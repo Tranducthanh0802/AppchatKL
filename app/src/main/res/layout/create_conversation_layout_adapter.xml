@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    tools:context=".ui.content.createConversation.adapter.CreateConversationAdapter">
+    <data>
+        <import type="com.example.appchatkl.data.CreateConversation"/>
+        <variable
+            name="create"
+            type="CreateConversation" />
+    </data>
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:background="@drawable/topic_adap"
+        android:id="@+id/relative_create"
+        android:layout_height="@dimen/_40sdp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height= "@dimen/_27sdp"
+            android:layout_centerVertical="true"
+            app:imageUri="@{create.linkPhoto}"
+            android:id="@+id/img_avata"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{create.name}"
+            android:textSize="@dimen/text"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@id/img_avata"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:checked="@={create.check}"
+            android:id="@+id/checkbox"
+            android:layout_centerVertical="true"
+            android:button="@drawable/checkbox"
+            />
+    </RelativeLayout>
+</layout>

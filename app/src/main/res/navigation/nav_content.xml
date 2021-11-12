@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_content"
+    app:startDestination="@id/listMessageFragment">
+    <fragment
+        android:id="@+id/listMessageFragment"
+        android:name="com.example.appchatkl.ui.content.listMessage.ListMessageFragment"
+        android:label="list_message_fragment"
+        tools:layout="@layout/list_message_fragment" >
+        <action
+            android:id="@+id/action_listMessageFragment_to_tablayouFiendFragment"
+            app:destination="@id/tablayouFiendFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.appchatkl.ui.content.user.UserFragment"
+        android:label="user_fragment"
+        tools:layout="@layout/user_fragment" />
+    <fragment
+        android:id="@+id/tablayouFiendFragment"
+        android:name="com.example.appchatkl.ui.content.friend.TablayouFiendFragment"
+        android:label="TablayouFiendFragment" >
+        <action
+            android:id="@+id/action_tablayouFiendFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+</navigation>

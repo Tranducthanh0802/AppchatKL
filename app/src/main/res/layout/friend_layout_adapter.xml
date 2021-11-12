@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.appchatkl.data.User"/>
+        <variable
+            name="user"
+            type="User" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_25sdp"
+            android:paddingLeft="@dimen/_16sdp"
+            android:background="#f7f7f7"
+            android:paddingTop="10dp"
+            android:textColor="#b0b0b0"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="@{user.section}"
+            android:id="@+id/mSection" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingLeft="@dimen/_5sdp"
+            android:background="@drawable/border_line"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:id="@+id/mUserAvatar"
+                app:imageUri="@{user.linkPhoto}"
+                android:src="@drawable/personal1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/mUserName"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:textColor="#1c1c1c"
+                    android:textSize="@dimen/_14sdp"
+                    android:text="@{user.fullName}" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

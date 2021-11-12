@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Appchatrealtime</string>
+    <string name="tittle">Trải nghiệm Awesome chat</string>
+    <string name="dangnhap">Đăng nhập</string>
+    <string name="dangnhap_Button">ĐĂNG NHẬP</string>
+    <string name="email" translatable="false">EMAIL</string>
+    <string name="matkhau">MẬT KHẨU</string>
+    <string name="quenMk">Quên mật khẩu?</string>
+    <string name="chuacotaikhoan">Chưa có tài khoản?</string>
+    <string name="dacotaikhoan">Đã có tài khoản?</string>
+    <string name="dkngay">Đăng ký ngay</string>
+    <string name="dnngay">Đăng nhập ngay</string>
+    <string name="dk">Đăng kí</string>
+    <string name="toidongy">Tôi đồng ý với các</string>
+    <string name="chinhsach">chính sách</string>
+    <string name="va">và</string>
+    <string name="dieukhoan">điều khoản</string>
+    <string name="hintgmail" translatable="false">yourname@gmail.com</string>
+    <string name="hintmk" translatable="false">******</string>
+    <string name="hovaten">HỌ VÀ TÊN</string>
+    <string name="hinthovaten">Tran Van A</string>
+    <string name="luu">Lưu</string>
+    <string name="chinhsualuutt">Chỉnh sửa lưu thông tin</string>
+    <string name="tinnhan">Tin nhắn</string>
+    <string name="tktinnhan">Tìm kiếm tin nhắn..</string>
+    <string name="banbe">Bạn bè</string>
+    <string name="trangcanhan">Trang cá nhân</string>
+    <string name="nhaptinnhan">Nhập tin nhắn</string>
+    <string name="taotinnhan">Tạo tin nhắn</string>
+    <string name="tatca">tất cả</string>
+    <string name="yeucau">yêu cầu</string>
+    <string name="huy">Huỷ</string>
+    <string name="dsbanbe">Danh sách bạn bè</string>
+    <string name="homnay">Hôm nay</string>
+    <string name="time" translatable="false">10:08</string>
+    <string name="dongy">Đồng ý</string>
+    <string name="ketban">Kết bạn</string>
+    <string name="loibanketban">LỜI MỜI KẾT BẠN</string>
+    <string name="daguiketban">ĐÃ GỬI KẾT BẠN</string>
+    <string name="thongbao">Thông báo</string>
+    <string name="ngongngu">Ngôn ngữ</string>
+    <string name="phienbanungdung">Phiên bản ứng dụng</string>
+    <string name="dangxuat">Đăng xuất</string>
+    <string name="tiengviet">Tiếng Việt</string>
+    <string name="sdt">Số điện thoại</string>
+    <string name="ngaysinh">Ngày sinh</string>
+    <string name="khongcoketnoi">Không có kết nối</string>
+    <string name="khongtimthay">Không tìm thấy kết quả phù hợp</string>
+    <string name="tinnhanphuhop">tin nhắn phù hợp</string>
+    <string name="bamthemlannua">Bấm thêm lần nữa để thoát</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+   >
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.example.appchatkl.data.Message"/>
+        <variable
+            name="message"
+            type="Message" />
+    </data>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_avata"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp" />
+        <ImageView
+            android:id="@+id/img_left"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:imageUri="@{message.image}"
+           android:layout_toRightOf="@id/img_avata"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_left"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:text="@{message.time}"
+            android:layout_marginLeft="@dimen/_70sdp"
+            android:textSize="@dimen/text"
+            android:visibility="@{message.showTime ? View.VISIBLE : View.GONE}"
+            />
+    </RelativeLayout>
+</layout>

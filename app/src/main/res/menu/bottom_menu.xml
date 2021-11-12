@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/listMessageFragment"
+        android:icon="@drawable/message"
+        android:title="@string/tinnhan"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/tablayouFiendFragment"
+        android:icon="@drawable/friend"
+        android:title="@string/banbe"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/userFragment"
+        android:icon="@drawable/user"
+        android:title="@string/trangcanhan"
+        app:showAsAction="ifRoom" />
+
+</menu>

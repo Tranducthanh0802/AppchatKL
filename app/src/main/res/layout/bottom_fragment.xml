@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.appchatkl.ui.content.user.BottomViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="bt"
+            type="BottomViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp"
+            android:background="@drawable/splash_background"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/rela_top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_9sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tinnhan"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sizeNameFrag"
+                    android:textStyle="bold"
+                    />
+
+                <ImageButton
+                    android:id="@+id/imgCreateMess"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_mn"
+                    android:src="@drawable/messagenew" />
+
+                <SearchView
+                    android:id="@+id/edtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:background="@drawable/button_mn"
+                    android:drawableLeft="@drawable/find"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="@string/tktinnhan"
+
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_110sdp"
+            android:visibility="visible" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/frag"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_above="@id/rela_bottom"
+            android:layout_below="@id/view_top"
+            android:background="@drawable/recyclerview"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_content" />
+
+        <RelativeLayout
+            android:id="@+id/rela_bottom"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_5sdp">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F6F6F6"
+                >
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/bottom"
+                    app:menu="@menu/bottom_menu"
+
+                    />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/searhempty"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/searchempty" />
+    </RelativeLayout>
+
+</layout>

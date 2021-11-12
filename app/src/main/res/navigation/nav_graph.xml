@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment2">
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.appchatkl.ui.login.LoginFragment"
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment2_to_registerFragment2"
+            app:destination="@id/registerFragment2" />
+        <action
+            android:id="@+id/action_loginFragment2_to_bottomFragment"
+            app:destination="@id/bottomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment2"
+        android:name="com.example.appchatkl.ui.register.RegisterFragment"
+        android:label="RegisterFragment" />
+    <fragment
+        android:id="@+id/bottomFragment"
+        android:name="com.example.appchatkl.ui.content.BottomFragment"
+        android:label="BottomFragment" >
+        <action
+            android:id="@+id/action_bottomFragment_to_createConversationFragment"
+            app:destination="@id/createConversationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createConversationFragment"
+        android:name="com.example.appchatkl.ui.content.createConversation.CreateConversationFragment"
+        android:label="create_conversation_fragment"
+        tools:layout="@layout/create_conversation_fragment" >
+        <action
+            android:id="@+id/action_createConversationFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.appchatkl.ui.content.chat.ChatFragment"
+        android:label="ChatFragment" />
+</navigation>

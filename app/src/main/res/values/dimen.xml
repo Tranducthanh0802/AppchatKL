@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sizeTitle">@dimen/_22sdp</dimen>
+    <dimen name="sizeNameFrag">@dimen/_24sdp</dimen>
+    <dimen name="text">@dimen/_10sdp</dimen>
+    <dimen name="edit">@dimen/_11sdp</dimen>
+    <dimen name="button">@dimen/_12sdp</dimen>
+    <dimen name="tieude">@dimen/_20sdp</dimen>
+    <dimen name="buttonDy">@dimen/_8sdp</dimen>
+</resources>
