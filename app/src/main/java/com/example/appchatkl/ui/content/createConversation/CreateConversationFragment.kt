@@ -12,23 +12,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appchatkl.R
-import com.example.appchatkl.commomFunction
+import com.example.appchatkl.CommomFunction
 import com.example.appchatkl.data.Chat
 import com.example.appchatkl.data.CreateConversation
-import com.example.appchatkl.data.Message
 import com.example.appchatkl.databinding.CreateConversationFragmentBinding
 import com.example.appchatkl.ui.content.createConversation.adapter.CreateConversationAdapter
+import com.example.appchatkl.ui.content.createConversation.adapter.Onclick
 import com.example.appchatkl.ui.content.createConversation.adapter.SelectFriendAdapter
-import com.example.appchatkl.ui.content.createConversation.adapter.onclick
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import kotlin.math.log
 
-class CreateConversationFragment : Fragment(), onclick {
+
+class CreateConversationFragment : Fragment(), Onclick {
     var TAG = "CreateConversationFragment"
 
     companion object {
@@ -45,7 +38,7 @@ class CreateConversationFragment : Fragment(), onclick {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.create_conversation_fragment, container, false
@@ -59,9 +52,9 @@ class CreateConversationFragment : Fragment(), onclick {
         createConversationAdapter = CreateConversationAdapter(this)
         selectFriendAdapter = SelectFriendAdapter()
 
-        var list = ArrayList<CreateConversation>()
-        val id = commomFunction.getId().toString()
-        viewModel.getAllUser(commomFunction.database, list, id)
+        val list = ArrayList<CreateConversation>()
+        val id = CommomFunction.getId()
+        viewModel.getAllUser(CommomFunction.database, list, id)
         binding.recyclerview.apply {
             adapter = createConversationAdapter
             layoutManager = LinearLayoutManager(
@@ -93,7 +86,7 @@ class CreateConversationFragment : Fragment(), onclick {
                 s += it.id + ","
                 Log.d(TAG, "onActivityCreated2: " + s)
             }
-            viewModel.check(commomFunction.database, s, Chat())
+            viewModel.check(CommomFunction.database, s, Chat())
             val controller = findNavController()
             val bundle = bundleOf("id" to s)
             controller.navigate(R.id.chatFragment, bundle)
@@ -106,8 +99,8 @@ class CreateConversationFragment : Fragment(), onclick {
         }
     }
 
-    override fun select(name: CreateConversation) {
-        list.add(name)
+    override fun select(conversation: CreateConversation) {
+        list.add(conversation)
         viewModel.getListSelect(list)
     }
 

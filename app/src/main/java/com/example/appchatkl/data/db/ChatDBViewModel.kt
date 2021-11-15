@@ -3,14 +3,14 @@ package com.example.appchatkl.data.db
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appchatkl.data.User
-import com.example.appchatkl.data.db.Data.Conversations
-import com.example.appchatkl.data.db.Data.Save
+import com.example.appchatkl.data.db.data.Conversations
+import com.example.appchatkl.data.db.data.Save
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ChatDBViewModel @Inject constructor(val noteRepository: ChatRepository) : ViewModel() {
+class ChatDBViewModel @Inject constructor(private val noteRepository: ChatRepository) : ViewModel() {
     fun insertConversation(note: Conversations) = viewModelScope.launch {
         noteRepository.insertConversation(note)
     }

@@ -12,8 +12,7 @@ import com.example.appchatkl.data.Friend
 import com.example.appchatkl.data.Request
 import com.example.appchatkl.data.User
 import com.example.appchatkl.databinding.RegisterFragmentBinding
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+
 
 class RegisterFragment : Fragment() {
     lateinit var binding: RegisterFragmentBinding
@@ -28,11 +27,11 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.register_fragment, container, false
         )
-        var view: View = binding.root
+        val view: View = binding.root
         binding.lifecycleOwner = this
 
         return view
@@ -43,7 +42,7 @@ class RegisterFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
         binding.register = viewModel
 
-        val user: User = User()
+        val user = User()
         val friend = Friend()
         val request = Request()
         binding.imgBack.setOnClickListener {

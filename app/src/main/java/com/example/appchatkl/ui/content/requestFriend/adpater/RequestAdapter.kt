@@ -1,40 +1,37 @@
 package com.example.appchatkl.ui.content.requestFriend.adpater
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
+
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appchatkl.R
+
 import com.example.appchatkl.data.User
-import com.example.appchatkl.databinding.InvitationLayoutAdapterBinding
+
 import com.example.appchatkl.databinding.RequestLayoutAdapterBinding
 
 
-class RequestAdapter(val decision: Decision) : RecyclerView.Adapter<RequestAdapter.MyViewHolder>() {
+class RequestAdapter(private val decision: Decision) : RecyclerView.Adapter<RequestAdapter.MyViewHolder>() {
 
 
     inner class MyViewHolder(val binding: RequestLayoutAdapterBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+        RecyclerView.ViewHolder(binding.root)
 
 
     private val diffCallback = object : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.fullName.equals(newItem.fullName)
+            return oldItem.fullName==(newItem.fullName)
         }
 
         override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-            return newItem.equals(oldItem)
+            return newItem==(oldItem)
         }
     }
 
     private val differ = AsyncListDiffer(this, diffCallback)
     var listConversation: List<User>
-        get() = differ.currentList.sortedBy { it.fullName.toString() }
+        get() = differ.currentList.sortedBy { it.fullName }
         set(value) {
             differ.submitList(value)
         }
@@ -49,7 +46,7 @@ class RequestAdapter(val decision: Decision) : RecyclerView.Adapter<RequestAdapt
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentTvShow: User = listConversation[position]
-        currentTvShow.section = currentTvShow.fullName.toString().substring(0, 1)
+        currentTvShow.section = currentTvShow.fullName.substring(0, 1)
         holder.binding.apply {
             user = currentTvShow
         }

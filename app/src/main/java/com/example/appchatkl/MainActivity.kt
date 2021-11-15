@@ -2,16 +2,15 @@ package com.example.appchatkl
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.ListFragment
-import com.example.appchatkl.R
+
 import com.example.appchatkl.databinding.ActivityMainBinding
 import com.example.appchatkl.ui.content.chat.ChatFragment
-import com.example.appchatkl.ui.content.listMessage.ListMessageFragment
+
 import com.example.appchatkl.ui.content.listMessage.adapter.SendData
-import com.example.appchatkl.ui.content.user.Find
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
         )
     }
 
-    override open fun onBackPressed() {
+    override fun onBackPressed() {
         super.onBackPressed()
     }
 

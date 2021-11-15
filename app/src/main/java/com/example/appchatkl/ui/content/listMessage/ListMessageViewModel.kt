@@ -1,19 +1,14 @@
 package com.example.appchatkl.ui.content.listMessage
 
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appchatkl.data.Conversation
 import com.example.appchatkl.data.Message
-import com.example.appchatkl.data.db.AppDatabase
 import com.example.appchatkl.data.db.ChatDBViewModel
-import com.example.appchatkl.data.db.Data.Conversations
-import com.example.appchatkl.ui.content.user.BottomViewModel
+import com.example.appchatkl.data.db.data.Conversations
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -43,65 +38,64 @@ open class ListMessageViewModel : ViewModel() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // Get Post object and use the values to update the UI
                     list.clear()
-                    val post = dataSnapshot!!.child("conversation").children
-                    post.forEach {
-                        var name: String = ""
-                        var linkPhoto: String = ""
+                    val post = dataSnapshot.child("conversation").children
+                    post.forEach { b->
+                        var name = ""
+                        var linkPhoto = ""
                         var message = ""
                         var id = ""
                         var idhost = ""
                         var idSee = ""
                         var count = ""
-                        if (Check(it.key, host)) {
-                            if (people(it.key).size > 3) {
-                                people(it.key).forEach {
-                                    if (!dataSnapshot.child("user").child(it.toString())
+                        if (check(b.key, host)) {
+                            if (people(b.key).size > 3) {
+                                people(b.key).forEach { a->
+                                    if (dataSnapshot.child("user").child(a)
                                             .child("fullName").getValue().toString()
-                                            .equals("null") && !it.toString().equals(host)
+                                            !=("null") && a!=(host)
                                     )
-                                        name += dataSnapshot.child("user").child(it.toString())
+                                        name += dataSnapshot.child("user").child(a)
                                             .child("fullName").getValue().toString() + ","
                                 }
-                                if (!dataSnapshot.child("user").child(it.toString())
-                                        .child("linkPhoto").getValue().toString().equals("null")
+                                if (dataSnapshot.child("user").child(b.toString())
+                                        .child("linkPhoto").getValue().toString()!=("null")
                                 )
-                                    linkPhoto = dataSnapshot.child("user").child(it.toString())
+                                    linkPhoto = dataSnapshot.child("user").child(b.toString())
                                         .child("linkPhoto").getValue().toString()
-                                Log.d(TAG, "onDataChange: 2 " + it.key + "  " + people(it.key).size)
                             } else {
-                                Log.d(TAG, "onDataChange: 1" + it.key)
-                                people(it.key).forEach {
-                                    if (!dataSnapshot.child("user").child(it.toString())
+                                Log.d(TAG, "onDataChange: 1" + b.key)
+                                people(b.key).forEach { c->
+                                    if (dataSnapshot.child("user").child(c)
                                             .child("fullName").getValue().toString()
-                                            .equals("null") && !it.toString().equals(host)
+                                            !=("null") && !b.equals(host)
                                     ) {
-                                        name = dataSnapshot.child("user").child(it.toString())
+                                        name = dataSnapshot.child("user").child(c)
                                             .child("fullName").getValue().toString()
-                                        linkPhoto = dataSnapshot.child("user").child(it.toString())
+                                        linkPhoto = dataSnapshot.child("user").child(c)
                                             .child("linkPhoto").getValue().toString()
                                     }
                                 }
 
                             }
-                            message = dataSnapshot!!.child("conversation").child(it.key.toString())
+                            message = dataSnapshot.child("conversation").child(b.key.toString())
                                 .child("message").getValue().toString()
-                            id = it.key.toString()
-                            idhost = dataSnapshot!!.child("conversation").child(it.key.toString())
+                            id = b.key.toString()
+                            idhost = dataSnapshot.child("conversation").child(b.key.toString())
                                 .child("id").getValue().toString()
-                            idSee = dataSnapshot!!.child("conversation").child(it.key.toString())
+                            idSee = dataSnapshot.child("conversation").child(b.key.toString())
                                 .child("idSee").getValue().toString()
-                            count = dataSnapshot!!.child("conversation").child(it.key.toString())
+                            count = dataSnapshot.child("conversation").child(b.key.toString())
                                 .child("count").getValue().toString()
                         }
                         var notifatcation = false
-                        if (host.equals(idhost) || host.equals(idSee))
+                        if (host==(idhost) || host==(idSee))
                             notifatcation = true
-                        if (!message.equals("")) {
+                        if (message!=("")) {
                             list.add(
                                 Conversation(
                                     Message(
-                                        TakeMessage(message),
-                                        time = TakeTime(message),
+                                        takeMessage(message),
+                                        time = takeTime(message),
                                         avata = linkPhoto,
                                         id = id
                                     ),
@@ -117,7 +111,7 @@ open class ListMessageViewModel : ViewModel() {
                                 chatDB.insertConversation(
                                     Conversations(
                                         idTeam = id,
-                                        time = TakeTime(message),
+                                        time = takeTime(message),
                                         linkPhotoTeam = linkPhoto,
                                         nameNhom = name,
                                         count = count,
@@ -137,19 +131,19 @@ open class ListMessageViewModel : ViewModel() {
                 override fun onCancelled(databaseError: DatabaseError) {
                     // Getting Post failed, log a message
                     Log.d(TAG, "onCancelled: erro")
-                    chatDB.loadConversation().forEach {
+                    chatDB.loadConversation().forEach { a->
                         list.add(
                             Conversation(
                                 Message(
-                                    TakeMessage(it.mesage),
-                                    time = TakeTime(it.mesage),
-                                    avata = it.linkPhotoTeam,
-                                    id = it.idTeam
+                                    takeMessage(a.mesage),
+                                    time = takeTime(a.mesage),
+                                    avata = a.linkPhotoTeam,
+                                    id = a.idTeam
                                 ),
-                                it.nameNhom,
-                                count = it.count,
-                                isNotificat = it.isNotification,
-                                listMessage = it.mesage.split("@@@@@")
+                                a.nameNhom,
+                                count = a.count,
+                                isNotificat = a.isNotification,
+                                listMessage = a.mesage.split("@@@@@")
                                     .toList() as ArrayList<String>,
                                 isFind = false
                             )
@@ -165,32 +159,25 @@ open class ListMessageViewModel : ViewModel() {
 
     fun getChatOff(
         list: ArrayList<Conversation>,
-        host: String,
+
         chatDB: ChatDBViewModel
     ) =
         viewModelScope.launch {
             // Get Post object and use the values to update the UI
-            var name: String = ""
-            var linkPhoto: String = ""
-            var message = ""
-            var id = ""
-            var idhost = ""
-            var idSee = ""
-            var count = ""
-            var notifatcation = false
-            chatDB.loadConversation().forEach {
+
+            chatDB.loadConversation().forEach { b->
                 list.add(
                     Conversation(
                         Message(
-                            TakeMessage(it.mesage),
-                            time = TakeTime(it.mesage),
-                            avata = it.linkPhotoTeam,
-                            id = it.idTeam
+                            takeMessage(b.mesage),
+                            time = takeTime(b.mesage),
+                            avata = b.linkPhotoTeam,
+                            id = b.idTeam
                         ),
-                        it.nameNhom,
-                        count = it.count,
-                        isNotificat = it.isNotification,
-                        listMessage = it.mesage.split("@@@@@")
+                        b.nameNhom,
+                        count = b.count,
+                        isNotificat = b.isNotification,
+                        listMessage = b.mesage.split("@@@@@")
                             .toList() as ArrayList<String>,
                         isFind = false
                     )
@@ -202,10 +189,10 @@ open class ListMessageViewModel : ViewModel() {
         }
 
 
-    private fun Check(key: String?, host: String): Boolean {
+    private fun check(key: String?, host: String): Boolean {
         val list = people(key)
         list.forEach {
-            if (it.equals(host)) return true
+            if (it==(host)) return true
         }
         return false
     }
@@ -214,14 +201,14 @@ open class ListMessageViewModel : ViewModel() {
         return key.toString().split(",").toList()
     }
 
-    private fun TakeTime(s: String): String {
+    private fun takeTime(s: String): String {
         if (s == "") return ""
         val message1 = s.split("@@@@@").toTypedArray()
         val message = message1[message1.size - 2].split("@@@@").toTypedArray()
         return message[1]
     }
 
-    private fun TakeMessage(s: String): String {
+    private fun takeMessage(s: String): String {
         if (s == "") return ""
         val message2 = s.split("@@@@@").toTypedArray()
         val message1 = message2[message2.size - 2].split("@@@@").toTypedArray()[0]

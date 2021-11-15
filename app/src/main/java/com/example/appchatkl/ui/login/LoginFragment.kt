@@ -12,23 +12,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.appchatkl.R
-import com.example.appchatkl.commomFunction
+import com.example.appchatkl.CommomFunction
 import com.example.appchatkl.data.db.AppDatabase
 import com.example.appchatkl.data.db.ChatDBViewModel
-import com.example.appchatkl.data.db.Data.Save
+import com.example.appchatkl.data.db.data.Save
 import com.example.appchatkl.databinding.LoginFragmentBinding
 import com.example.appchatkl.ui.content.friend.friend.FriendFragment
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     val TAG = "LoginFragment"
     private lateinit var controller: NavController
-    lateinit var chatDB: AppDatabase
-     val viewModel1: ChatDBViewModel by activityViewModels()
+    lateinit  var chatDB: AppDatabase
+     private val viewModel1: ChatDBViewModel by activityViewModels()
 
     companion object {
         fun newInstance() = FriendFragment()
@@ -38,11 +35,11 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        var binding: LoginFragmentBinding = DataBindingUtil.inflate(
+    ): View {
+        val binding: LoginFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.login_fragment, container, false
         )
-        var view: View = binding.root
+        val view: View = binding.root
         binding.lifecycleOwner = this
         chatDB = AppDatabase.getDatabase(view.context)
         val loginViewModel: LoginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
@@ -67,14 +64,13 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        if (commomFunction.currentUser != null) {
-            val emailVerified: Boolean = commomFunction.currentUser.isEmailVerified();
-            val uid = commomFunction.currentUser.uid
+        if (CommomFunction.currentUser != null) {
+            val uid = CommomFunction.currentUser.uid
             viewModel1.insertSave(Save(uid))
             controller.navigate(R.id.bottomFragment)
         } else {
             viewModel1.loadSave().forEach {
-                if (!it.id.equals("null")) {
+                if (it.id!=("null")) {
                     controller.navigate(R.id.bottomFragment)
                 }
             }

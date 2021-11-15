@@ -1,9 +1,6 @@
 package com.example.appchatkl.data
 
-import androidx.room.Entity
-
-@Entity(tableName = "Mesage")
-class Message(
+data class Message(
     var message: String = "",
     var id: String = "",
     var time: String = "",
@@ -12,6 +9,6 @@ class Message(
     var isImage: Boolean = false,
     var isShowTime: Boolean = false,
     var isShowAvata: Boolean = false,
-    var isRight: Boolean = false
-) {
-}
+    var isRight: Boolean = false,
+    var isNotificat:Boolean=false
+)

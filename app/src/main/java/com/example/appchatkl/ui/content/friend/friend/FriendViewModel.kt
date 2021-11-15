@@ -6,9 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appchatkl.data.User
-import com.example.appchatkl.data.db.AppDatabase
 import com.example.appchatkl.data.db.ChatDBViewModel
-import com.example.appchatkl.data.db.Data.Conversations
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -17,7 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 class FriendViewModel : ViewModel() {
     // TODO: Implement the ViewModel
@@ -38,29 +35,29 @@ class FriendViewModel : ViewModel() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 list.clear()
-                val Friend = dataSnapshot!!.child("fiend").child(host).child("allId").getValue()
-                analyst(Friend.toString()).forEach {
-                    if (!it.equals(host) && !dataSnapshot!!.child("user").child(it.toString())
-                            .child("id").value.toString().equals("null")
+                val friend = dataSnapshot.child("fiend").child(host).child("allId").getValue()
+                analyst(friend.toString()).forEach {a->
+                    if (a!=(host) && dataSnapshot.child("user").child(a)
+                            .child("id").value.toString()!=("null")
                     ) {
                         list.add(
                             User(
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("id").value.toString(),
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("fullName").value.toString(),
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("linkPhoto").value.toString()
                             )
                         )
                         uiScope.launch {
                             chatDB.insertUser(
                                 User(
-                                    id = dataSnapshot!!.child("user").child(it.toString())
+                                    id = dataSnapshot.child("user").child(a)
                                         .child("id").value.toString(),
-                                    fullName = dataSnapshot!!.child("user").child(it.toString())
+                                    fullName = dataSnapshot.child("user").child(a)
                                         .child("fullName").value.toString(),
-                                    linkPhoto = dataSnapshot!!.child("user").child(it.toString())
+                                    linkPhoto = dataSnapshot.child("user").child(a)
                                         .child("linkPhoto").value.toString()
                                 )
                             )
@@ -90,7 +87,6 @@ class FriendViewModel : ViewModel() {
 
     fun getAllUserOff(
         list: ArrayList<User>,
-        host: String,
         chatDB: ChatDBViewModel
     ) = viewModelScope.launch {
         chatDB.loadUser().forEach {

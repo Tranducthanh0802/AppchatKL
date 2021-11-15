@@ -13,7 +13,7 @@ class Conversation(
     var count: String = "",
     var id: String = "",
     var idSee: String = "",
-    var listMessage: ArrayList<String> = ArrayList<String>(),
+    var listMessage: ArrayList<String> = ArrayList(),
     var isFind: Boolean = false
 ) {
     init {

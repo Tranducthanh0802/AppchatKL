@@ -6,7 +6,7 @@ import com.example.appchatkl.ui.content.allFriend.AllFriendFragment
 import com.example.appchatkl.ui.content.friend.friend.FriendFragment
 import com.example.appchatkl.ui.content.requestFriend.RequestFriendFragment
 
-class TablayoutAdapter(private val fragment: Fragment) :
+class TablayoutAdapter( fragment: Fragment) :
     FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = 3

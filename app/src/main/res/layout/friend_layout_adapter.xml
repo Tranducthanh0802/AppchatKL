@@ -17,20 +17,25 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_25sdp"
             android:paddingLeft="@dimen/_16sdp"
+            android:paddingRight="@dimen/_16sdp"
             android:background="#f7f7f7"
             android:paddingTop="10dp"
             android:textColor="#b0b0b0"
             android:textSize="14sp"
             android:textStyle="bold"
             android:text="@{user.section}"
-            android:id="@+id/mSection" />
+            android:id="@+id/mSection"
+            android:paddingStart="@dimen/_16sdp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:paddingTop="@dimen/_5sdp"
             android:paddingLeft="@dimen/_5sdp"
+            android:paddingRight="@dimen/_16sdp"
             android:background="@drawable/border_line"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_16sdp">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="44dp"
                 android:layout_height="44dp"
@@ -41,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_marginLeft="20dp">
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"

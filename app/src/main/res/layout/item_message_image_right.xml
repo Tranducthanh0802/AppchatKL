@@ -20,7 +20,9 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_marginRight="@dimen/_5sdp"
            android:layout_alignParentRight="true"
-            />
+            android:contentDescription="@string/tinnhan"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_alignParentEnd="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +33,7 @@
             android:layout_marginRight="@dimen/_5sdp"
             android:visibility="@{message.showTime ? View.VISIBLE : View.GONE}"
             android:textSize="@dimen/text"
-            />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_5sdp" />
     </RelativeLayout>
 </layout>

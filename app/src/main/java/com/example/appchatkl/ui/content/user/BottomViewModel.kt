@@ -15,14 +15,13 @@ import kotlinx.coroutines.launch
 
 class BottomViewModel : ViewModel() {
     val TAG = "BottomViewModel"
-    private var _count = MutableLiveData<String>("0")
+    private var _count = MutableLiveData("0")
     val count: LiveData<String> get() = _count
-    private var _countRecive = MutableLiveData<String>("0")
+    private var _countRecive = MutableLiveData("0")
     val countRecive: LiveData<String> get() = _countRecive
     private var _findM = MutableLiveData<List<Conversation>>()
-    val findM: LiveData<List<Conversation>> get() = _findM
     var edt = MutableLiveData<String>()
-    var searchEmpty = MutableLiveData<Boolean>(false)
+    var searchEmpty = MutableLiveData(false)
     var postion = MutableLiveData<Int>()
 
 
@@ -31,58 +30,58 @@ class BottomViewModel : ViewModel() {
             val postListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // Get Post object and use the values to update the UI
-                    val post = dataSnapshot!!.child("conversation").children
+                    val post = dataSnapshot.child("conversation").children
                     var count1 = 0
                     post.forEach {
-                        var name: String = ""
-                        var linkPhoto: String = ""
+                        var name  = ""
+                        var linkPhoto= ""
                         var message = ""
-                        var id = ""
+                        val id = ""
                         var idhost = ""
                         var idSee = ""
-                        var count = ""
-                        if (Check(it.key, host)) {
+                        val count = ""
+                        if (check(it.key, host)) {
                             if (people(it.key).size > 3) {
-                                people(it.key).forEach {
-                                    if (!dataSnapshot.child("user").child(it.toString())
+                                people(it.key).forEach { a->
+                                    if (dataSnapshot.child("user").child(a)
                                             .child("fullName").getValue().toString()
-                                            .equals("null") && !it.toString().equals(host)
+                                            !=("null") && !it.equals(host)
                                     )
-                                        name += dataSnapshot.child("user").child(it.toString())
+                                        name += dataSnapshot.child("user").child(a)
                                             .child("fullName").getValue().toString() + ","
                                 }
-                                if (!dataSnapshot.child("user").child(it.toString())
-                                        .child("linkPhoto").getValue().toString().equals("null")
+                                if (dataSnapshot.child("user").child(it.toString())
+                                        .child("linkPhoto").getValue().toString()!=("null")
                                 )
                                     linkPhoto = dataSnapshot.child("user").child(it.toString())
                                         .child("linkPhoto").getValue().toString()
                                 Log.d(TAG, "onDataChange: 2 " + it.key + "  " + people(it.key).size)
                             } else {
                                 Log.d(TAG, "onDataChange: 1" + it.key)
-                                people(it.key).forEach {
-                                    if (!dataSnapshot.child("user").child(it.toString())
+                                people(it.key).forEach {a->
+                                    if (dataSnapshot.child("user").child(a)
                                             .child("fullName").getValue().toString()
-                                            .equals("null") && !it.toString().equals(host)
+                                            !=("null") && a!=(host)
                                     ) {
-                                        name = dataSnapshot.child("user").child(it.toString())
+                                        name = dataSnapshot.child("user").child(a)
                                             .child("fullName").getValue().toString()
-                                        linkPhoto = dataSnapshot.child("user").child(it.toString())
+                                        linkPhoto = dataSnapshot.child("user").child(a)
                                             .child("linkPhoto").getValue().toString()
                                     }
                                 }
                             }
-                            message = dataSnapshot!!.child("conversation").child(it.key.toString())
+                            message = dataSnapshot.child("conversation").child(it.key.toString())
                                 .child("message").getValue().toString()
-                            idhost = dataSnapshot!!.child("conversation").child(it.key.toString())
+                            idhost = dataSnapshot.child("conversation").child(it.key.toString())
                                 .child("id").getValue().toString()
-                            idSee = dataSnapshot!!.child("conversation").child(it.key.toString())
+                            idSee = dataSnapshot.child("conversation").child(it.key.toString())
                                 .child("idSee").getValue().toString()
                         }
-                        if (!host.equals(idhost) && !host.equals(idSee) && !it.key.toString()
-                                .equals("null")
+                        if (host!=(idhost) && host!=(idSee) && it.key.toString()
+                                !=("null")
                         )
                             count1 += 1
-                        if (!message.equals("")) {
+                        if (message!=("")) {
                             list.add(
                                 Conversation(
                                     Message(
@@ -111,14 +110,13 @@ class BottomViewModel : ViewModel() {
         postReference: DatabaseReference,
         host: String
     ) = viewModelScope.launch {
-        val currentInv: List<String> = ArrayList<String>()
-        val currentRequest: List<String> = ArrayList<String>()
+
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 val post =
-                    dataSnapshot!!.child("request").child(host).child("receiveRequest").getValue()
+                    dataSnapshot.child("request").child(host).child("receiveRequest").getValue()
                 _countRecive.value = (people(post.toString()).size - 1).toString()
 
             }
@@ -129,10 +127,10 @@ class BottomViewModel : ViewModel() {
         postReference.addValueEventListener(postListener)
     }
 
-    private fun Check(key: String?, host: String): Boolean {
+    private fun check(key: String?, host: String): Boolean {
         val list = people(key)
         list.forEach {
-            if (it.equals(host)) return true
+            if (it==(host)) return true
         }
         return false
     }

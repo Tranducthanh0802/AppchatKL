@@ -1,14 +1,13 @@
 package com.example.appchatkl
 
-import android.app.Activity
+
 import android.content.Context
 import android.net.ConnectivityManager
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-object commomFunction {
+object CommomFunction {
     var auth = Firebase.auth
     val currentUser = auth.currentUser
     val database = Firebase.database.reference
@@ -22,8 +21,8 @@ object commomFunction {
     fun compare(id: String, host: String): Boolean {
         var a: List<String> = id.split(",").toList()
         var b = host.split(",").toList()
-        a = a.sortedBy { it.toString().trim() }
-        b = b.sortedBy { it.toString().trim() }
+        a = a.sortedBy { it.trim() }
+        b = b.sortedBy { it.trim() }
         if (a.toString().equals(b.toString())) return true
         return false
     }

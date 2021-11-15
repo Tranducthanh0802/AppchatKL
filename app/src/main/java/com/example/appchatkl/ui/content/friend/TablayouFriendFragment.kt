@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appchatkl.R
-import com.example.appchatkl.commomFunction
+import com.example.appchatkl.CommomFunction
 import com.example.appchatkl.data.User
 import com.example.appchatkl.databinding.TablayoutFriendFragmentBinding
 import com.example.appchatkl.ui.content.friend.adapterTablayout.FindFriendAdapter
@@ -19,12 +19,7 @@ import com.example.appchatkl.ui.content.friend.adapterTablayout.TablayoutAdapter
 
 import com.example.appchatkl.ui.content.user.BottomViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+
 
 
 class TablayouFiendFragment : Fragment() {
@@ -38,7 +33,7 @@ class TablayouFiendFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val binding: TablayoutFriendFragmentBinding = DataBindingUtil.inflate(
             inflater,
@@ -53,19 +48,19 @@ class TablayouFiendFragment : Fragment() {
                 2 -> tab.text = "YÊU CẦU"
             }
         }.attach()
-        val id = commomFunction.getId().toString()
+        val id = CommomFunction.getId()
 
-        viewModel.getInvitationAndRequest(commomFunction.database, id)
+        viewModel.getInvitationAndRequest(CommomFunction.database, id)
         viewModel.countRecive.observe(viewLifecycleOwner, {
             val count = it.toInt()
             Log.d(TAG, "onCreateView: " + count)
             if (count > 0) {
-                binding.tab.getTabAt(2)?.getOrCreateBadge()?.setNumber(count);
+                binding.tab.getTabAt(2)?.getOrCreateBadge()?.setNumber(count)
             } else {
-                binding.tab.getTabAt(2)?.removeBadge();
+                binding.tab.getTabAt(2)?.removeBadge()
             }
         })
-        val findFriendAdapter: FindFriendAdapter = FindFriendAdapter()
+        val findFriendAdapter = FindFriendAdapter()
         binding.recBb.apply {
             adapter = findFriendAdapter
             layoutManager = LinearLayoutManager(
@@ -75,7 +70,7 @@ class TablayouFiendFragment : Fragment() {
             setHasFixedSize(true)
         }
         val list = ArrayList<User>()
-        viewModel.getFriend(commomFunction.database, list, id)
+        viewModel.getFriend(CommomFunction.database, list, id)
         viewModel.responseTvShow.observe(viewLifecycleOwner, {
             findFriendAdapter.listConversation = it as ArrayList<User>
             findFriendAdapter.get()

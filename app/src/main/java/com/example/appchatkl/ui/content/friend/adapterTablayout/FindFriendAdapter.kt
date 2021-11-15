@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
+
+
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appchatkl.data.Conversation
+
 import com.example.appchatkl.data.User
-import com.example.appchatkl.databinding.ConversationLayoutAdapterBinding
+
 import com.example.appchatkl.databinding.FindFriendLayoutAdapterBinding
-import com.example.appchatkl.databinding.FindLayoutAdapterBinding
+
 
 class FindFriendAdapter : RecyclerView.Adapter<FindFriendAdapter.MyViewHolder>(),
     Filterable {
@@ -30,16 +30,9 @@ class FindFriendAdapter : RecyclerView.Adapter<FindFriendAdapter.MyViewHolder>()
     }
 
 
-    private val diffCallback = object : DiffUtil.ItemCallback<User>() {
-        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.fullName.equals(newItem.fullName)
-        }
-        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-            return newItem.equals(oldItem)
-        }
-    }
 
-    private val differ = AsyncListDiffer(this, diffCallback)
+
+
     var listConversation = ArrayList<User>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

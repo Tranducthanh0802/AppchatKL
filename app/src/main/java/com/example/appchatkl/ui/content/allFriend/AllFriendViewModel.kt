@@ -21,7 +21,7 @@ class AllFriendViewModel : ViewModel() {
     private var _idSendRequest = MutableLiveData<String>()
     val idSendReQuest: LiveData<String>
         get() = _idSendRequest
-    private var _idSendRequest1 = MutableLiveData<String>("")
+    private var _idSendRequest1 = MutableLiveData<String>()
     val idSendReQuest1: LiveData<String>
         get() = _idSendRequest1
 
@@ -34,43 +34,43 @@ class AllFriendViewModel : ViewModel() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 list.clear()
-                val post = dataSnapshot!!.child("user").children
-                var id = ""
-                val Friend = dataSnapshot!!.child("fiend").child(host).child("allId").getValue()
-                val Request =
-                    dataSnapshot!!.child("request").child(host).child("sendRequest").getValue()
-                _idSendRequest.value = Request.toString()
-                val Receive =
-                    dataSnapshot!!.child("request").child(host).child("receiveRequest").getValue()
+                val post = dataSnapshot.child("user").children
+                var id:String
+                val friend = dataSnapshot.child("fiend").child(host).child("allId").getValue()
+                val request =
+                    dataSnapshot.child("request").child(host).child("sendRequest").getValue()
+                _idSendRequest.value = request.toString()
+                val receive =
+                    dataSnapshot.child("request").child(host).child("receiveRequest").getValue()
                 post.forEach {
                     var isFriend = false
                     val user = User()
-                    if (!it.key.toString().equals(host) && !it.key.toString().equals("null")) {
-                        id = dataSnapshot!!.child("user").child(it.key.toString())
+                    if (it.key.toString()!=(host) && it.key.toString()!=("null")) {
+                        id = dataSnapshot.child("user").child(it.key.toString())
                             .child("id").value.toString()
-                        analyst(Friend.toString()).forEach {
+                        analyst(friend.toString()).forEach {    a->
                             Log.d(TAG, "Friend: " + it + " () " + id)
-                            if (it.equals(id)) {
+                            if (a==id) {
                                 isFriend = true
                             }
                         }
-                        analyst(Request.toString()).forEach {
+                        analyst(request.toString()).forEach { a ->
                             Log.d(TAG, "Request: " + it + " () " + id)
-                            if (it.equals(id)) {
+                            if (a==(id)) {
                                 isFriend = true
                             }
                         }
-                        analyst(Receive.toString()).forEach {
+                        analyst(receive.toString()).forEach { a->
                             Log.d(TAG, "Receive: " + it + " () " + id)
-                            if (it.equals(id)) {
+                            if (a==(id)) {
                                 isFriend = true
                             }
                         }
-                        user.id = dataSnapshot!!.child("user").child(it.key.toString())
+                        user.id = dataSnapshot.child("user").child(it.key.toString())
                             .child("id").value.toString()
-                        user.fullName = dataSnapshot!!.child("user").child(it.key.toString())
+                        user.fullName = dataSnapshot.child("user").child(it.key.toString())
                             .child("fullName").value.toString()
-                        user.linkPhoto = dataSnapshot!!.child("user").child(it.key.toString())
+                        user.linkPhoto = dataSnapshot.child("user").child(it.key.toString())
                             .child("linkPhoto").value.toString()
                         user.isFriend = isFriend
                         list.add(user)
@@ -94,10 +94,10 @@ class AllFriendViewModel : ViewModel() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
-                var Request =
-                    dataSnapshot!!.child("request").child(idGuest).child("sendRequest").getValue()
-                if (Request!!.equals("null")) Request = ""
-                _idSendRequest1.value = Request.toString()
+                var request =
+                    dataSnapshot.child("request").child(idGuest).child("sendRequest").getValue()
+                if (request ==("null")) request = ""
+                _idSendRequest1.value = request.toString()
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Post failed, log a message

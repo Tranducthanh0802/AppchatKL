@@ -2,13 +2,11 @@ package com.example.appchatkl.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.example.appchatkl.data.Conversation
 import com.example.appchatkl.data.User
-import com.example.appchatkl.data.db.Data.Conversations
-import com.example.appchatkl.data.db.Data.Save
+import com.example.appchatkl.data.db.data.Conversations
+import com.example.appchatkl.data.db.data.Save
 
 @Dao
 interface ChatDao {

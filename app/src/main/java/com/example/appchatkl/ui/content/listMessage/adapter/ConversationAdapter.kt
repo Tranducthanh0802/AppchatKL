@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
+
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appchatkl.data.Conversation
 import com.example.appchatkl.databinding.ConversationLayoutAdapterBinding
-import com.example.appchatkl.ui.content.createConversation.adapter.onclick
 
 
-class ConversationAdapter(val open: onClick) :
+
+class ConversationAdapter(private val open: OnClick) :
     RecyclerView.Adapter<ConversationAdapter.MyViewHolder>(),
     Filterable {
     //  lateinit var list : ArrayList<Conversation>
@@ -30,16 +29,7 @@ class ConversationAdapter(val open: onClick) :
     }
 
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Conversation>() {
-        override fun areItemsTheSame(oldItem: Conversation, newItem: Conversation): Boolean {
-            return oldItem.name.equals(newItem.name)
-        }
-        override fun areContentsTheSame(oldItem: Conversation, newItem: Conversation): Boolean {
-            return newItem.equals(oldItem)
-        }
-    }
 
-    private val differ = AsyncListDiffer(this, diffCallback)
     var listConversation = ArrayList<Conversation>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -79,7 +69,7 @@ class ConversationAdapter(val open: onClick) :
                         row.listMessage.forEach {
                             if (it.lowercase().contains(
                                     constraint.toString().lowercase()
-                                ) && !constraint.toString().equals("null")
+                                ) && constraint.toString()!=("null")
                             ) {
                                 count += 1
                             }

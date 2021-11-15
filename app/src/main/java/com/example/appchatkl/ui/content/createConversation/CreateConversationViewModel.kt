@@ -5,15 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appchatkl.commomFunction
+import com.example.appchatkl.CommomFunction
 import com.example.appchatkl.data.*
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
+
 import kotlinx.coroutines.launch
 
 class CreateConversationViewModel : ViewModel() {
@@ -36,19 +35,19 @@ class CreateConversationViewModel : ViewModel() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 list.clear()
-                val Friend =
-                    dataSnapshot!!.child("fiend").child(host).child("allId").getValue().toString()
-                Friend.split(",").forEach {
-                    if (!dataSnapshot!!.child("user").child(it.toString())
-                            .child("id").value.toString().equals("null")
+                val friend =
+                    dataSnapshot.child("fiend").child(host).child("allId").getValue().toString()
+                friend.split(",").forEach { a->
+                    if (dataSnapshot.child("user").child(a)
+                            .child("id").value.toString()!=("null")
                     ) {
                         list.add(
                             CreateConversation(
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("id").value.toString(),
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("fullName").value.toString(),
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("linkPhoto").value.toString()
                             )
                         )
@@ -76,9 +75,9 @@ class CreateConversationViewModel : ViewModel() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
-                val post = dataSnapshot!!.child("conversation").children
+                val post = dataSnapshot.child("conversation").children
                 post.forEach {
-                    if (commomFunction.compare(it.key.toString(), id)) {
+                    if (CommomFunction.compare(it.key.toString(), id)) {
                         k = 0
                         Log.d(TAG, "onDataChange123: " + it.key.toString() + " () " + id)
                     }

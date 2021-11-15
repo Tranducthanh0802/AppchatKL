@@ -16,7 +16,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_25sdp"
-            android:paddingLeft="16dp"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingRight="@dimen/_16sdp"
             android:background="#f7f7f7"
             android:paddingTop="10dp"
             android:textColor="#b0b0b0"
@@ -29,8 +30,11 @@
             android:layout_height="@dimen/_50sdp"
             android:paddingTop="@dimen/_5sdp"
             android:paddingLeft="15dp"
+            android:paddingRight="@dimen/_13sdp"
             android:background="@drawable/border_line"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="15dp"
+            android:paddingEnd="@dimen/_13sdp">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="@dimen/_44sdp"
                 android:layout_height="@dimen/_44sdp"
@@ -41,7 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp">
+
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp">
                 <TextView
                     android:layout_width="@dimen/_160sdp"
                     android:layout_height="@dimen/_30sdp"

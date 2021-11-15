@@ -1,6 +1,6 @@
 package com.example.appchatkl.ui.content.listMessage.adapter
 
-interface onClick {
+interface OnClick {
     fun openChat(s: String)
 
 }

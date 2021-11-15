@@ -33,7 +33,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text"
             android:layout_marginLeft="@dimen/_70sdp"
-            />
+            android:layout_marginStart="@dimen/_70sdp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +43,6 @@
             android:layout_marginLeft="@dimen/_70sdp"
             android:textSize="@dimen/text"
             android:visibility="@{message.showTime ? View.VISIBLE : View.GONE}"
-             />
+            android:layout_marginStart="@dimen/_70sdp" />
     </RelativeLayout>
 </layout>

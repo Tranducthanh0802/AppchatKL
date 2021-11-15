@@ -5,6 +5,4 @@ class Chat(
     var id: String = "",
     var count: String = "0",
     var idSee: String = ""
-) {
-
-}
+)

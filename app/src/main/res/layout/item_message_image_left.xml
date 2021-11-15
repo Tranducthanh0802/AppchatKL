@@ -22,7 +22,8 @@
             android:layout_height="@dimen/_50sdp"
             app:imageUri="@{message.image}"
            android:layout_toRightOf="@id/img_avata"
-            />
+            android:contentDescription="@string/tinnhan"
+            android:layout_toEndOf="@id/img_avata" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +33,6 @@
             android:layout_marginLeft="@dimen/_70sdp"
             android:textSize="@dimen/text"
             android:visibility="@{message.showTime ? View.VISIBLE : View.GONE}"
-            />
+            android:layout_marginStart="@dimen/_70sdp" />
     </RelativeLayout>
 </layout>

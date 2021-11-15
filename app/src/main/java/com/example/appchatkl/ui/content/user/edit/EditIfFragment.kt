@@ -1,4 +1,4 @@
-package com.example.appchatkl.ui.content.user.Edit
+package com.example.appchatkl.ui.content.user.edit
 
 import android.Manifest
 import android.app.Activity
@@ -6,34 +6,28 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
+
 import android.os.Bundle
-import android.util.Log
+
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.checkSelfPermission
+
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.appchatkl.R
-import com.example.appchatkl.commomFunction
+import com.example.appchatkl.CommomFunction
 import com.example.appchatkl.data.User
 import com.example.appchatkl.databinding.FragmentEditIfBinding
-import com.example.appchatkl.databinding.UserFragmentBinding
-import com.example.appchatkl.ui.content.user.UserFragment
+
 import com.example.appchatkl.ui.content.user.UserViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+
+
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
-import java.io.File
+
+
 
 
 class EditIfFragment : Fragment() {
@@ -42,7 +36,7 @@ class EditIfFragment : Fragment() {
     lateinit var binding: FragmentEditIfBinding
     private lateinit var viewModel: UserViewModel
     var user = User()
-    val REQUEST_CODE = 123
+    private val REQUEST_CODE = 123
 
     companion object {
         fun newInstance() = EditIfFragment()
@@ -51,7 +45,7 @@ class EditIfFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_edit_if, container, false
@@ -63,8 +57,8 @@ class EditIfFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         binding.user = user
-        id = commomFunction.getId().toString()
-        viewModel.getIF(commomFunction.database, id)
+        id = CommomFunction.getId()
+        viewModel.getIF(CommomFunction.database, id)
         viewModel.user.observe(viewLifecycleOwner, {
             binding.user = it
             user = it
@@ -75,7 +69,7 @@ class EditIfFragment : Fragment() {
             user.phoneNumber = binding.edtPN.text.toString()
             user.date = binding.edtDate.text.toString()
             user.id = id
-            commomFunction.database.child("user").child(id).setValue(user)
+            CommomFunction.database.child("user").child(id).setValue(user)
         }
         binding.camera.setOnClickListener {
             requestPermission(requireContext())
@@ -97,9 +91,9 @@ class EditIfFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
             //imageView.setImageURI(data?.data) // handle chosen image
-            val storage = Firebase.storage
+
             val file: Uri = data?.data!!
-            var storageRef =
+            val storageRef =
                 FirebaseStorage.getInstance().getReference("" + System.currentTimeMillis())
             storageRef.putFile(file).addOnSuccessListener {
                 storageRef.downloadUrl.addOnSuccessListener {
@@ -113,7 +107,7 @@ class EditIfFragment : Fragment() {
         }
     }
 
-    fun CheckPermission(context: Context): Boolean {
+    private fun checkPermission(context: Context): Boolean {
         return ActivityCompat.checkSelfPermission(
             context,
             Manifest.permission.READ_EXTERNAL_STORAGE
@@ -121,8 +115,8 @@ class EditIfFragment : Fragment() {
     }
 
     fun requestPermission(context: Context) {
-        var permission = mutableListOf<String>()
-        if (!CheckPermission(context)) {
+        val permission = mutableListOf<String>()
+        if (!checkPermission(context)) {
             permission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
         if (permission.isNotEmpty()) {

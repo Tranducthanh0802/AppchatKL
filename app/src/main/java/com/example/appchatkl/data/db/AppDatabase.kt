@@ -5,9 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.appchatkl.data.User
-import com.example.appchatkl.data.db.Data.Conversations
-import com.example.appchatkl.data.db.Data.Save
-import com.example.appchatkl.ui.content.listMessage.ListMessageFragment
+import com.example.appchatkl.data.db.data.Conversations
+import com.example.appchatkl.data.db.data.Save
 
 @Database(entities = [User::class, Conversations::class, Save::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
@@ -16,7 +15,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         private var INSTANCE: AppDatabase? = null
-        private val DB_NAME = "chat_db"
+        private const val  DB_NAME = "chat_db"
         fun getDatabase(context: Context): AppDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {

@@ -1,6 +1,6 @@
 package com.example.appchatkl.ui.content.requestFriend.adpater
 
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -9,19 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appchatkl.data.User
 import com.example.appchatkl.databinding.InvitationLayoutAdapterBinding
 
-class InvitationAdapter(val decision: Decision) :
+class InvitationAdapter(private val decision: Decision) :
     RecyclerView.Adapter<InvitationAdapter.MyViewHolder>() {
     inner class MyViewHolder(val binding: InvitationLayoutAdapterBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+        RecyclerView.ViewHolder(binding.root)
 
 
     private val diffCallback = object : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.fullName.equals(newItem.fullName)
+            return oldItem.fullName==(newItem.fullName)
         }
         override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-            return newItem.equals(oldItem)
+            return newItem==(oldItem)
         }
     }
 

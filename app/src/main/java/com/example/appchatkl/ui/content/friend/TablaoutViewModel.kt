@@ -24,13 +24,12 @@ class TablaoutViewModel : ViewModel() {
         postReference: DatabaseReference,
         host: String
     ) = viewModelScope.launch {
-        val currentInv: List<String> = ArrayList<String>()
-        val currentRequest: List<String> = ArrayList<String>()
+
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 val post =
-                    dataSnapshot!!.child("request").child(host).child("receiveRequest").getValue()
+                    dataSnapshot.child("request").child(host).child("receiveRequest").getValue()
                 _countRecive.value = (people(post.toString()).size - 1).toString()
             }
 
@@ -50,18 +49,18 @@ class TablaoutViewModel : ViewModel() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 list.clear()
-                val Friend = dataSnapshot!!.child("fiend").child(host).child("allId").getValue()
-                analyst(Friend.toString()).forEach {
-                    if (!it.equals(host) && !dataSnapshot!!.child("user").child(it.toString())
-                            .child("id").value.toString().equals("null")
+                val friend = dataSnapshot.child("fiend").child(host).child("allId").getValue()
+                analyst(friend.toString()).forEach {a->
+                    if (a!=(host) && dataSnapshot.child("user").child(a)
+                            .child("id").value.toString()!=("null")
                     ) {
                         list.add(
                             User(
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("id").value.toString(),
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("fullName").value.toString(),
-                                dataSnapshot!!.child("user").child(it.toString())
+                                dataSnapshot.child("user").child(a)
                                     .child("linkPhoto").value.toString()
                             )
                         )

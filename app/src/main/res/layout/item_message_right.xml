@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
         <import type="com.example.appchatkl.data.Message"/>
@@ -7,14 +8,15 @@
             name="message"
             type="Message" />
     </data>
-    <RelativeLayout
+    <LinearLayout
+        tools:ignore="UselessParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
-            android:layout_width="@dimen/_280sdp"
+            android:layout_width="@dimen/_300sdp"
             android:layout_marginRight="@dimen/_5sdp"
-            android:layout_alignParentRight="true"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp">
             <TextView
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
@@ -27,7 +29,8 @@
                 android:background="@drawable/message_right"
                 android:text="@{message.message}"
                 android:id="@+id/txt_receive"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_5sdp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,7 +41,8 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:visibility="@{message.showTime ? View.VISIBLE : View.GONE}"
                 android:textSize="@dimen/text"
-                />
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_5sdp" />
         </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout >
 </layout>

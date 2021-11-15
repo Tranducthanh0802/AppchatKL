@@ -50,4 +50,13 @@
     <string name="bamthemlannua">Bấm thêm lần nữa để thoát</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imageback">back</string>
+    <string name="imageIcon">icon</string>
+    <string name="imageSend">send</string>
+    <string name="imageNext">next</string>
+    <string name="phoneNumber">so dien thoai</string>
+    <string name="Date">Ngay Sinh</string>
+
+
+
 </resources>

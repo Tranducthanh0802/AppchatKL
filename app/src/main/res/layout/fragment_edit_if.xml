@@ -16,6 +16,7 @@
             android:layout_height="@dimen/_150sdp">
             <RelativeLayout
                 android:layout_margin="@dimen/_10sdp"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
@@ -25,7 +26,8 @@
                     android:scaleType="fitStart"
                     android:id="@+id/btn_back"
                    android:layout_marginLeft="-10dp"
-                    />
+                    android:contentDescription="@string/imageback"
+                    android:layout_marginStart="-10dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -33,8 +35,11 @@
                     android:layout_centerHorizontal="true"
                     android:textSize="@dimen/edit"
                     android:textColor="@color/white"
+                    android:layout_toEndOf="@id/btn_back"
                     android:layout_marginTop="@dimen/_13sdp"
-                    />
+                    android:layout_toStartOf="@id/txtSave"
+                    android:layout_toRightOf="@id/btn_back"
+                    android:layout_toLeftOf="@id/txtSave" />
                 <TextView
                     android:layout_margin="@dimen/_7sdp"
                     android:layout_width="@dimen/_30sdp"
@@ -45,7 +50,7 @@
                     android:textSize="@dimen/text"
                     android:textColor="@color/white"
                     android:id="@+id/txtSave"
-                    />
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
@@ -73,7 +78,8 @@
                     android:layout_marginLeft="@dimen/_180sdp"
                     android:layout_marginTop="@dimen/_85sdp"
                     android:id="@+id/camera"
-                    />
+                    android:layout_marginStart="@dimen/_180sdp"
+                    android:contentDescription="@string/imageIcon" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -87,6 +93,7 @@
                     android:textSize="@dimen/text"
                     />
                 <EditText
+                    android:hint="@string/hovaten"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -96,7 +103,9 @@
                     android:background="@color/white"
                     android:textColor="@color/black"
                     android:id="@+id/edtFN"
-                    />
+                    android:drawableEnd="@drawable/personal1"
+                    android:inputType="text"
+                    android:autofillHints="" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -110,6 +119,7 @@
                     android:textSize="@dimen/text"
                     />
                 <EditText
+                    android:hint="@string/phoneNumber"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -119,7 +129,9 @@
                     android:background="@color/white"
                     android:textColor="@color/black"
                     android:id="@+id/edtPN"
-                    />
+                    android:drawableEnd="@drawable/personal1"
+                    android:inputType="number"
+                    android:autofillHints="" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -142,7 +154,10 @@
                     android:background="@color/white"
                     android:textColor="@color/black"
                     android:id="@+id/edtDate"
-                    />
+                    android:hint="@string/Date"
+                    android:inputType="datetime"
+                    android:autofillHints=""
+                    android:drawableEnd="@drawable/personal1" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>

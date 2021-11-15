@@ -9,7 +9,7 @@ import com.example.appchatkl.data.CreateConversation
 import com.example.appchatkl.databinding.CreateConversationLayoutAdapterBinding
 
 
-class CreateConversationAdapter(val onclick: onclick) :
+class CreateConversationAdapter(val onclick: Onclick) :
     RecyclerView.Adapter<CreateConversationAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val binding: CreateConversationLayoutAdapterBinding) :
@@ -22,13 +22,13 @@ class CreateConversationAdapter(val onclick: onclick) :
             oldItem: CreateConversation,
             newItem: CreateConversation
         ): Boolean {
-            return oldItem.name.equals(newItem.name)
+            return oldItem.name==(newItem.name)
         }
         override fun areContentsTheSame(
             oldItem: CreateConversation,
             newItem: CreateConversation
         ): Boolean {
-            return newItem.equals(oldItem)
+            return newItem == (oldItem)
         }
     }
 

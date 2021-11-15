@@ -1,4 +1,4 @@
-package com.example.appchatkl.data.db.Data
+package com.example.appchatkl.data.db.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

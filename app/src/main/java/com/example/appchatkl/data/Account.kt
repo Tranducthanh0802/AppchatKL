@@ -2,7 +2,7 @@ package com.example.appchatkl.data
 
 import android.text.TextUtils
 import android.util.Patterns
-import androidx.lifecycle.LiveData
+
 
 
 class Account(var email: String = "", var password: String = "") {

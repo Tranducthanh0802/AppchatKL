@@ -8,11 +8,9 @@ import com.example.appchatkl.data.Account
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
 
-class LoginViewModel() : ViewModel() {
+class LoginViewModel : ViewModel() {
     var _email = MutableLiveData<String>()
     var _passWord = MutableLiveData<String>()
     private var _isCheck = MutableLiveData<Boolean>()
@@ -26,16 +24,16 @@ class LoginViewModel() : ViewModel() {
         Log.d("abc", "signInWithEmail:success" + _email.value.toString())
         val account = Account(_email.value.toString(), _passWord.value.toString())
         // accountLiveData.value= Account(email.value.toString(),password.value.toString())
-        if (account.isValidEmail() == true
-            && account.isValidPassword() == true
+        if (account.isValidEmail()
+            && account.isValidPassword()
         ) {
             val auth: FirebaseAuth = Firebase.auth
-            auth.signInWithEmailAndPassword(account.email.toString(), account.password.toString())
+            auth.signInWithEmailAndPassword(account.email, account.password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("abc", "signInWithEmail:success")
-                        val user = auth.currentUser
+
                         _isCheck.value = true
                     } else {
                         // If sign in fails, display a message to the user.

@@ -21,7 +21,8 @@
             android:src="@drawable/plane_blue"
             android:layout_marginLeft="@dimen/_21sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            />
+            android:contentDescription="@string/tittle"
+            android:layout_marginStart="@dimen/_21sdp" />
         <TextView
             android:textColor="@color/black"
             android:id="@+id/txt_tittle"
@@ -32,7 +33,7 @@
             android:layout_marginLeft="@dimen/_21sdp"
             android:text="@string/tittle"
             android:textSize="@dimen/sizeTitle"
-            />
+            android:layout_marginStart="@dimen/_21sdp" />
         <TextView
             android:id="@+id/txt_Dangnhap"
             android:layout_width="wrap_content"
@@ -44,7 +45,7 @@
             android:layout_marginLeft="@dimen/_21sdp"
             android:textColor="@color/blueDark"
             android:textStyle="bold"
-            />
+            android:layout_marginStart="@dimen/_21sdp" />
         <LinearLayout
             android:id="@+id/line"
             android:layout_width="match_parent"
@@ -71,7 +72,9 @@
                 android:hint="@string/hintgmail"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
-                android:textSize="@dimen/edit" />
+                android:textSize="@dimen/edit"
+                android:autofillHints=""
+                android:drawableEnd="@drawable/ic_baseline_mail_outline_24" />
             <TextView
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_width="wrap_content"
@@ -90,13 +93,14 @@
                 android:textColor="@color/black"
                 android:inputType="textPassword"
                 android:drawableRight="@drawable/key"
-                />
+                android:autofillHints=""
+                android:drawableEnd="@drawable/key" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/quenMk"
                 android:textColor="@color/blueDark"
-                android:gravity="right"
+                android:gravity="end"
                 android:textSize="@dimen/text"
                 />
             <TextView

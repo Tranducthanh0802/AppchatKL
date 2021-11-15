@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "User")
-class User(
+data class User(
     @PrimaryKey
     var id: String = "",
     var fullName: String = "",
@@ -14,5 +14,4 @@ class User(
     var section: String = "",
     var isFriend: Boolean = false,
     var date: String = ""
-) {
-}
+)

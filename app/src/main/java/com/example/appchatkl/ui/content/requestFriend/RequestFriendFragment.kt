@@ -10,18 +10,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appchatkl.R
-import com.example.appchatkl.commomFunction
+import com.example.appchatkl.CommomFunction
 import com.example.appchatkl.data.User
 import com.example.appchatkl.databinding.RequestFriendFragmentBinding
 import com.example.appchatkl.ui.content.requestFriend.adpater.Decision
 import com.example.appchatkl.ui.content.requestFriend.adpater.InvitationAdapter
 import com.example.appchatkl.ui.content.requestFriend.adpater.RequestAdapter
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class RequestFriendFragment : Fragment(), Decision {
     lateinit var binding: RequestFriendFragmentBinding
@@ -38,7 +32,7 @@ class RequestFriendFragment : Fragment(), Decision {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.request_friend_fragment, container, false
@@ -50,10 +44,10 @@ class RequestFriendFragment : Fragment(), Decision {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(RequestFriendViewModel::class.java)
 
-        var list = ArrayList<User>()
-        var list1 = ArrayList<User>()
-        id = commomFunction.getId().toString()
-        viewModel.getInvitationAndRequest(commomFunction.database, list, list1, id)
+        val list = ArrayList<User>()
+        val list1 = ArrayList<User>()
+        id = CommomFunction.getId()
+        viewModel.getInvitationAndRequest(CommomFunction.database, list, list1, id)
         val invitationAdapter = InvitationAdapter(this)
         binding.recInviteReceive.apply {
             adapter = invitationAdapter
@@ -86,23 +80,23 @@ class RequestFriendFragment : Fragment(), Decision {
 
 
     override fun onClickYes(s: String) {
-        viewModel.guest(commomFunction.database, s)
+        viewModel.guest(CommomFunction.database, s)
         val a = viewModel.delete(viewModel.idSendReQuest.value.toString(), s)
-        commomFunction.database.child("request").child(id).child("receiveRequest").setValue(a)
+        CommomFunction.database.child("request").child(id).child("receiveRequest").setValue(a)
         val b = viewModel.friend.value + s + ","
-        commomFunction.database.child("fiend").child(id).child("allId").setValue(b)
+        CommomFunction.database.child("fiend").child(id).child("allId").setValue(b)
         val c = viewModel.delete(viewModel.idSendReQuest1.value.toString(), id)
-        commomFunction.database.child("request").child(s).child("sendRequest").setValue(c)
+        CommomFunction.database.child("request").child(s).child("sendRequest").setValue(c)
         val d = viewModel.friend1.value + id + ","
-        commomFunction.database.child("fiend").child(s).child("allId").setValue(d)
+        CommomFunction.database.child("fiend").child(s).child("allId").setValue(d)
     }
 
     override fun onClikNo(s: String) {
-        viewModel.guest(commomFunction.database, s)
+        viewModel.guest(CommomFunction.database, s)
         val a = viewModel.delete(viewModel.idReceiveReQuest.value.toString(), s)
-        commomFunction.database.child("request").child(id).child("sendRequest").setValue(a)
+        CommomFunction.database.child("request").child(id).child("sendRequest").setValue(a)
         val b = viewModel.delete(viewModel.idReceiveReQuest1.value.toString(), id)
-        commomFunction.database.child("request").child(s).child("receiveRequest").setValue(a)
+        CommomFunction.database.child("request").child(s).child("receiveRequest").setValue(b)
     }
 
 }

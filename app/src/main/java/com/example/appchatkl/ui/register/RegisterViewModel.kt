@@ -1,20 +1,15 @@
 package com.example.appchatkl.ui.register
 
-import android.util.Log
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.appchatkl.commomFunction
+import com.example.appchatkl.CommomFunction
 import com.example.appchatkl.data.Account
 import com.example.appchatkl.data.Friend
 import com.example.appchatkl.data.Request
 import com.example.appchatkl.data.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
+
 
 class RegisterViewModel : ViewModel() {
     // TODO: Implement the ViewModel
@@ -23,32 +18,32 @@ class RegisterViewModel : ViewModel() {
     val fullName: LiveData<String>
         get() = _fullName
     var _email = MutableLiveData<String>()
-    val email: LiveData<String>
+   private val email: LiveData<String>
         get() = _email
     var _passWord = MutableLiveData<String>()
     val passWord: LiveData<String>
         get() = _passWord
     var isCheck: Boolean = false
     var notification = MutableLiveData<String>()
-    var isShowNotification = false
+    private var isShowNotification = false
 
-    fun saveIF( user: User, friend: Friend, request: Request) {
-        commomFunction.database.child("user").child(user.id.toString()).setValue(user)
-        commomFunction.database.child("fiend").child(user.id.toString()).setValue(friend)
-        commomFunction.database.child("request").child(user.id.toString()).setValue(request)
+    private fun saveIF( user: User, friend: Friend, request: Request) {
+        CommomFunction.database.child("user").child(user.id).setValue(user)
+        CommomFunction.database.child("fiend").child(user.id).setValue(friend)
+        CommomFunction.database.child("request").child(user.id).setValue(request)
     }
 
     fun register( user: User, friend: Friend, request: Request) {
         val account = Account(email.value.toString(), passWord.value.toString())
         isShowNotification = true
-        if (account.isValidEmail() == true
-            && account.isValidPassword() == true && !fullName.value.toString()
+        if (account.isValidEmail() 
+            && account.isValidPassword()  && !fullName.value.toString()
                 .isNullOrEmpty() && isCheck
         ) {
-            commomFunction.auth.createUserWithEmailAndPassword(account.email, account.password)
+            CommomFunction.auth.createUserWithEmailAndPassword(account.email, account.password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        user.id = commomFunction.auth.uid.toString()
+                        user.id = CommomFunction.auth.uid.toString()
                         user.fullName = fullName.value.toString()
                         saveIF( user, friend, request)
                         notification.value = "registration success "

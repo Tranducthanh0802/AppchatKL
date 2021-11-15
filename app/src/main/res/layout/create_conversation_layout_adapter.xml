@@ -16,7 +16,8 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:background="@drawable/topic_adap"
         android:id="@+id/relative_create"
-        android:layout_height="@dimen/_40sdp">
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_10sdp">
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/_27sdp"
             android:layout_height= "@dimen/_27sdp"
@@ -34,7 +35,10 @@
             android:layout_toRightOf="@id/img_avata"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp"
-            />
+            android:layout_toStartOf="@id/checkbox"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@id/img_avata"
+            android:layout_toLeftOf="@id/checkbox" />
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +47,6 @@
             android:id="@+id/checkbox"
             android:layout_centerVertical="true"
             android:button="@drawable/checkbox"
-            />
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 </layout>
